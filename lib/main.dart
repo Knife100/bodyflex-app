@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_gym/admin/admin_page.dart';
+import 'package:flutter_application_gym/trainer/trainer_page.dart';
 
 
 void main() {
@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
               displayColor: Colors.black87,
             ),
       ),
-      home: const AdminDashboard(),
+      home: const TrainerDashboard(),
     );
   }
 }

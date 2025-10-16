@@ -3,18 +3,21 @@ import 'package:flutter_application_gym/models/client_model.dart';
 import 'package:flutter_application_gym/models/plan_model.dart';
 import 'package:flutter_application_gym/services/client_service.dart';
 import 'package:flutter_application_gym/services/plan_service.dart';
-import 'package:flutter_application_gym/admin/clientCard.dart';
-import 'package:flutter_application_gym/admin/clientForm.dart';
-import 'package:flutter_application_gym/admin/clientsearchBar.dart';
+import 'package:flutter_application_gym/clients-section/clientCard.dart';
+import 'package:flutter_application_gym/clients-section/clientForm.dart';
+import 'package:flutter_application_gym/clients-section/ClientSearchBar.dart';
 
-class AdminClientsPage extends StatefulWidget {
-  const AdminClientsPage({super.key});
+class ClientsPage extends StatefulWidget {
+  final String userType; // "admin" o "trainer"
+
+  const ClientsPage(
+      {super.key, this.userType = "admin"}); // admin por defecto
 
   @override
-  State<AdminClientsPage> createState() => _AdminClientsPageState();
+  State<ClientsPage> createState() => _ClientsPageState();
 }
 
-class _AdminClientsPageState extends State<AdminClientsPage> {
+class _ClientsPageState extends State<ClientsPage> {
   List<Client> clients = [];
   List<PlanFromAPI> plans = [];
   Client? editingClient;
@@ -58,6 +61,7 @@ class _AdminClientsPageState extends State<AdminClientsPage> {
           Navigator.pop(context);
           setState(() => editingClient = null);
         },
+        userType: widget.userType, // 👈 ahora se pasa correctamente
       ),
     );
   }
@@ -172,7 +176,6 @@ class _AdminClientsPageState extends State<AdminClientsPage> {
                       ),
 
                       const SizedBox(width: 16),
-
                     ],
                   )
                 : Column(

@@ -106,7 +106,7 @@ class _AdminPlansPageState extends State<AdminPlansPage> {
                 ),
                 const SizedBox(height: 8),
                 DropdownButtonFormField<String>(
-                  value: selectedStatus,
+                  initialValue: selectedStatus,
                   decoration: const InputDecoration(labelText: 'Estado'),
                   items: const [
                     DropdownMenuItem(value: "Activo", child: Text("Activo")),

@@ -5,39 +5,56 @@ class ClientStats extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GridView.count(
-      crossAxisCount: 1,
-      crossAxisSpacing: 16,
-      mainAxisSpacing: 16,
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-      childAspectRatio: 3,
-      children: const [
-        _StatCard(
-          title: 'Total Clientes',
-          value: '1,234',
-          subtitle: '+45 este mes',
-          icon: Icons.group,
-        ),
-        _StatCard(
-          title: 'Clientes Activos',
-          value: '1,156',
-          subtitle: '94% del total',
-          icon: Icons.check_circle_outline,
-        ),
-        _StatCard(
-          title: 'Nuevos Este Mes',
-          value: '45',
-          subtitle: '+25% vs mes anterior',
-          icon: Icons.person_add_alt_1,
-        ),
-        _StatCard(
-          title: 'Plan Más Popular',
-          value: 'MENSUALIDAD',
-          subtitle: '45% de los clientes',
-          icon: Icons.star_border,
-        ),
-      ],
+    final isWide = MediaQuery.of(context).size.width > 900;
+
+    const stats = [
+      _StatCard(
+        title: 'Total Clientes',
+        value: '1,234',
+        subtitle: '+45 este mes',
+        icon: Icons.group,
+      ),
+      _StatCard(
+        title: 'Clientes Activos',
+        value: '1,156',
+        subtitle: '94% del total',
+        icon: Icons.check_circle_outline,
+      ),
+      _StatCard(
+        title: 'Nuevos Este Mes',
+        value: '45',
+        subtitle: '+25% vs mes anterior',
+        icon: Icons.person_add_alt_1,
+      ),
+      _StatCard(
+        title: 'Plan Más Popular',
+        value: 'MENSUALIDAD',
+        subtitle: '45% de los clientes',
+        icon: Icons.star_border,
+      ),
+    ];
+
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: isWide
+          ? Wrap(
+              spacing: 16,
+              runSpacing: 16,
+              children: stats
+                  .map((stat) => SizedBox(
+                        width: MediaQuery.of(context).size.width / 2 - 24,
+                        child: stat,
+                      ))
+                  .toList(),
+            )
+          : Column(
+              children: stats
+                  .map((stat) => Padding(
+                        padding: const EdgeInsets.only(bottom: 16),
+                        child: stat,
+                      ))
+                  .toList(),
+            ),
     );
   }
 }
@@ -58,18 +75,22 @@ class _StatCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
+      color: const Color.fromARGB(255, 247, 247, 247),
       elevation: 2,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Row(
           children: [
-            Icon(icon, size: 28, color: Colors.grey[600]),
+            CircleAvatar(
+              radius: 22,
+              backgroundColor: Colors.grey[200],
+              child: Icon(icon, size: 24, color: Colors.grey[600]),
+            ),
             const SizedBox(width: 16),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
                     title,

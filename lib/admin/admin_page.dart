@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_gym/admin/admin_clients.dart';
+import 'package:flutter_application_gym/clients-section/ClientsPage.dart';
 import 'package:flutter_application_gym/admin/admin_employees.dart';
 import 'package:flutter_application_gym/admin/AdminPlansPage.dart';
-import 'package:flutter_application_gym/admin/ClientStats.dart'; // 👈 Importación añadida
+import 'package:flutter_application_gym/admin/ClientStats.dart';
+import 'package:flutter_application_gym/notifications-section/NotificationsPage.dart'; // 👈 Importación añadida
 
 class AdminDashboard extends StatefulWidget {
   const AdminDashboard({super.key});
@@ -32,7 +33,7 @@ class _AdminDashboardState extends State<AdminDashboard> {
       case "payments":
         return const Center(child: Text("AdminPayments Widget"));
       case "clients":
-        return AdminClientsPage();
+        return ClientsPage();
       case "machines":
         return const Center(child: Text("AdminMachines Widget"));
       case "employees":
@@ -40,7 +41,7 @@ class _AdminDashboardState extends State<AdminDashboard> {
       case "plans":
         return AdminPlansPage();
       case "notifications":
-        return const Center(child: Text("AdminNotifications Widget"));
+        return NotificationsPage();
       case "dashboard":
       default:
         return SingleChildScrollView(

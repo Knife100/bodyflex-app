@@ -49,6 +49,7 @@ class ClientCard extends StatelessWidget {
         final isLargeScreen = constraints.maxWidth > 600;
 
         return Card(
+          color: const Color.fromARGB(255, 247, 247, 247), // 👈 fondo blanco puro
           elevation: 2,
           margin: const EdgeInsets.symmetric(vertical: 6, horizontal: 8),
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
